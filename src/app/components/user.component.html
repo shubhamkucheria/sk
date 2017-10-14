@@ -1,0 +1,93 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+</head>
+<body>
+
+<h2>Colored Table Header</h2>
+
+<table>
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Savings</th>
+  </tr>
+  <tr>
+    <td>Peter</td>
+    <td>Griffin</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <td>Lois</td>
+    <td>Griffin</td>
+    <td>$150</td>
+  </tr>
+  <tr>
+    <td>Joe</td>
+    <td>Swanson</td>
+    <td>$300</td>
+  </tr>
+  <tr>
+    <td>Cleveland</td>
+    <td>Brown</td>
+    <td>$250</td>
+</tr>
+</table>
+
+</body>
+</html> -->
+
+<h1>{{name}}</h1>
+    <p><strong>Email:</strong> {{email}}</p>
+    <p><strong>Address:</strong> {{address.street}} {{address.city}}, {{address.state}}</p>
+    <button class="btn btn-default btn-md" style="cursor:pointer;" (click)="toggleHobbies()">{{showHobbies ? "Hide Hobbies" : "Show Hobbies"}}</button>
+    <div *ngIf="showHobbies">
+        <h3>Hobbies</h3>
+        <ul>
+            <li *ngFor="let hobby of hobbies; let i = index">
+                {{hobby}} <button  class="btn btn-success btn-delete btn-xs" (click)="deleteHobby(i)">X</button>
+            </li>
+        </ul>
+        <form (submit)="addHobby(hobby.value)">
+            <label>Add Hobby: </label><br />
+            <input type="text" #hobby /><br />
+        </form>
+    </div>
+    <hr />
+    <h3>Edit User</h3>
+    <form>
+        <label>Name: </label><br />
+        <input type="text" name="name" [(ngModel)]="name" /><br />
+        <label>Email: </label><br />
+        <input type="text" name="email" [(ngModel)]="email" /><br />
+        <label>Street: </label><br />
+        <input type="text" name="address.street" [(ngModel)]="address.street" /><br />
+        <label>City: </label><br />
+        <input type="text" name="address.city" [(ngModel)]="address.city" /><br />
+        <label>State: </label><br />
+        <input type="text" name="address.state" [(ngModel)]="address.state" /><br />
+    </form>
+    <hr />
+    <h3>Posts</h3>
+    <div *ngFor="let post of posts">
+        <h3>{{post.name}}</h3>
+        <p>{{post.email}}</p>
+    </div>
