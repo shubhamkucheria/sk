@@ -11,5 +11,4 @@ export class AboutComponent  {
     constructor(){
       this.header_title = "This is an about page!"
     }
-    
  }

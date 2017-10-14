@@ -2,6 +2,7 @@
 var router_1 = require("@angular/router");
 var user_component_1 = require("./components/user.component");
 var about_component_1 = require("./components/about.component");
+var list_component_1 = require("./components/list.component");
 var appRoutes = [
     {
         path: '',
@@ -10,6 +11,10 @@ var appRoutes = [
     {
         path: 'about',
         component: about_component_1.AboutComponent
+    },
+    {
+        path: 'list',
+        component: list_component_1.ListComponent
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);
