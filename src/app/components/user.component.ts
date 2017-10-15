@@ -16,12 +16,12 @@ export class UserComponent  {
   posts:Post[];
 
   constructor(){
-    this.name = 'John Doe';
-    this.email = 'john@gmail.com',
+    this.name = 'Shubham kucheria';
+    this.email = 'shubham@gmail.com',
     this.address = {
-        street: '12 Main st',
-        city: 'Boston',
-        state: 'MA'
+        street: 'near powai',
+        city: 'Mumbai',
+        state: 'MH'
     }
     this.hobbies = ['Music', 'Movies', 'Sports'];
     this.showHobbies = false;

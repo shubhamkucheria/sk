@@ -12,12 +12,12 @@ var core_1 = require("@angular/core");
 var posts_service_1 = require("../services/posts.service");
 var UserComponent = (function () {
     function UserComponent() {
-        this.name = 'John Doe';
-        this.email = 'john@gmail.com',
+        this.name = 'Shubham kucheria';
+        this.email = 'shubham@gmail.com',
             this.address = {
-                street: '12 Main st',
-                city: 'Boston',
-                state: 'MA'
+                street: 'near powai',
+                city: 'Mumbai',
+                state: 'MH'
             };
         this.hobbies = ['Music', 'Movies', 'Sports'];
         this.showHobbies = false;
