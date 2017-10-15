@@ -1,1 +1,38 @@
-<h1>{{header_title}}</h1>
+<button class="btn btn-default btn-md" style="cursor:pointer;" (click)="showFilms()"> show Films</button>
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Director</th>
+    <div *ngIf="showDes">
+      <th>Rating</th>
+    </div>
+    <div *ngIf="!showDes"><th><button class="btn btn-default btn-md" style="cursor:pointer;" (click)="showMore()">More</button></th></div>
+  </tr>
+  <tr *ngFor="let post of film">
+        <td>{{post.title}}</td>
+        <td>{{post.year}}</td>
+        <td>{{post.director}}</td>
+        <div *ngIf="showDes">
+          <td>{{post.rating}}</td>
+        </div>
+      </tr>
+</table>
