@@ -1,0 +1,161 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="shubhamTodo">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Shubham-Todo Display System</title>
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<style>
+		body, html {
+		    height: 100%;
+		    margin: 0;
+		    max-width: 100%;
+    		overflow-x: hidden;
+		}
+		table, th , td  		{ border: 1px solid grey; border-collapse: collapse; padding: 5px; }
+		table tr:nth-child(odd) { background-color: #f1f1f1; }
+		table tr:nth-child(even) { background-color: #ffffff; }
+
+
+		.bg {
+		    /* The image used */
+		    background-image: url("todoimg1.jpg");
+
+		    /* Full height */
+		    height: 100%;
+
+		    /* Center and scale the image nicely */
+		    background-position: center;
+		    background-repeat: no-repeat;
+		    background-size: cover;
+		}
+
+		header {
+		  height: 70px;
+		  width: 100%;
+		  position: absolute;
+		  top: 0px;
+		  color: white;
+		  background-color: #555;
+		  text-align: center;
+		}
+		#content {
+		  padding-top: 2px;
+		  width: 100%;
+		  background-color: grey;
+		  position: absolute;
+		  top:60px;
+		  bottom: 0px;
+		  overflow: auto;
+		}
+		footer {
+		  height: 60px;
+		  width: 100%;
+		  position: absolute;
+		  bottom: 0px;
+		  color: white;
+		  background-color: #555;
+		}
+		.topmargin {
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+	<script src="js/services/todo.js"></script> <!-- load our todo service -->
+	<script src="js/core.js"></script> <!-- load our main application -->
+
+</head>
+<!-- SET THE CONTROLLER -->
+<body ng-controller="mainController">
+
+    <header>
+     	<div class="container-fluid text-center">
+			<p>
+				<h3>
+					<i class="fa fa-check-square-o" aria-hidden="true"> todo app by shubham </i>
+					<i class="fa fa-coffee" aria-hidden="true"></i>
+				</h3>
+			</p>
+		</div>
+    </header>
+    <section id="content">
+    <div class="bg">
+    	<div class="row">
+    		<div class="col-sm-1 topmargin"></div>
+			<div class="col-sm-3 topmargin">
+				<div class="panel panel-primary">
+			    	<div class="panel-heading">
+			        	<h4>Total Todo Items : <span class="label label-info">{{ todo.length }}</span></h4>
+	    			</div>
+					<div class="panel-body">
+
+				 		<form>
+							<div ng-if="!editFunction" class="form-group">
+								<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+								<input type="text" class="form-control input-lg text-center" placeholder="Todo" ng-model="formData.text">
+							</div>
+							<div ng-if="editFunction" class="form-group">
+								Todo: <input type="text" class="form-control input-lg text-center" ng-model="formData.text">
+							</div>
+							<button ng-if="!editFunction" type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+							<button ng-if="editFunction" type="submit" class="btn btn-primary btn-lg" ng-click="update()">Update</button>
+							<button class="btn btn-warning btn-lg" ng-click="ReportGen()">Generate Report</button>
+						</form>
+
+					</div>
+				</div>
+
+	 		</div>
+
+	 		<div class="col-sm-7 topmargin">
+	 			<div class="panel panel-primary">
+			    	<div class="panel-heading">
+			    		<p><h4 class="panel-title"> Todo list for today - <span class="label label-info"> {{ today }}
+			    		</span></h4></p>
+	    			</div>
+			    	<div class="panel-body">
+			        	<div class="input-group">
+			            	<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+			            	<input id="search" type="search" class="form-control" placeholder="Search..." data-ng-model="search">
+			        	</div>
+			        	<div style="overflow-y: scroll; height:420px;" class="table-responsive">
+			            	<table class="table table-striped">
+			                	<thead>
+				                    <tr>
+				                    <th class="col-xs-1">{{ 'Index' }}</th>
+							    	<th class="col-xs-4">{{ 'Todo Item' }}</th>
+							    	<th class="col-xs-1">{{ 'Update' }}</th>
+							    	<th class="col-xs-1">{{ 'Delete' }}</th>
+				                    </tr>
+				                </thead>
+				                <tr data-ng-repeat="todo in todo| filter: search" class="repeat-animation">
+				                    <td>{{$index + 1}} </td>
+				                    <td>{{ todo.text  }}</td>
+								    <td><button class="btn btn-info btn-sm" ng-click="edit(todo)">Update</button>
+								    <td><button class="btn btn-danger btn-sm" ng-click="deleteTodo(todo._id)">Delete</button>
+				            </table>
+			        	</div>
+			    	</div>
+				</div>
+	 		</div>
+		</div>
+		</div>
+    </section>
+
+    <footer class="container-fluid text-center">
+		<p> Awesome on-demand todo webapp by shubham </p>
+		<p> Made with <i class="fa fa-heart" aria-hidden="true"></i></p>
+    </footer>
+</body>
+</html>
