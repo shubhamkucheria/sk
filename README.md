@@ -12,8 +12,15 @@ Node provides the RESTful API. Angular provides the frontend and accesses the AP
 ## Installation
 
 1. Install the application: `npm install`
-2. Place your own MongoDB URI in `config/database.js`
+2. Place your own MongoDB URI in `config/database.js` 
+/*
+By default I am using online mongoDb server - mLab
+*/
 3. Start the server: `node server.js`
 4. View in browser at `http://localhost:8080`
 
-Happy Food ordering
+Happy TODO-ing :) 
+
+check the working code here 
+
+https://thisismytodoapp.herokuapp.com/
