@@ -62,6 +62,16 @@ module.exports = function (app) {
         });
     });
 
+    // delete a todo List
+    app.post('/api/deletetodolist', function (req, res) {
+        Todo.remove({}, function (err, todo) {
+            if (err)
+                res.send(err);
+
+            getTodos(res);
+        });
+    });
+
     // application -------------------------------------------------------------
     app.get('*', function (req, res) {
       console.log(__dirname + '/public/index.html');

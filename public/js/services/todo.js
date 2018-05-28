@@ -15,6 +15,9 @@ angular.module('shubhamTodoService', [])
 			},
 			update : function(todoData) {
 				return $http.post('/api/updateTodo', todoData);
+			},
+			deleteList: function() {
+				return $http.post('/api/deletetodolist');
 			}
 		}
 	}]);

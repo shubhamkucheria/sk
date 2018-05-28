@@ -15,8 +15,7 @@ angular.module('shubhamTodoController', [])
 				$scope.loading = false;
 			});
 
-		// CREATE ==================================================================
-		// when submitting the add form, send the data to the node API
+
 		$scope.ReportGen = function() {
 			var arr = [];
 			arr.push('','Todo Task', '\n');
@@ -36,6 +35,8 @@ angular.module('shubhamTodoController', [])
 		        a.click();
 		}
 
+		// CREATE ==================================================================
+		// when submitting the add form, send the data to the node API
 		$scope.createTodo = function() {
 
 			// validate the formData to make sure that something is there
@@ -54,6 +55,15 @@ angular.module('shubhamTodoController', [])
 					});
 			}
 		};
+
+		$scope.deletetodolist = function() {
+			Todo.deleteList()
+				// if successful delete list, call our get function and remove all todo tasks
+				.success(function(data) {
+					$scope.loading = false;
+					$scope.todo = data; // assign our new list of todo
+				});
+		}
 
 
 		$scope.edit = function(data) {
