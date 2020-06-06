@@ -1,7 +1,8 @@
 var Todo = require('./models/todo');
 const mailgun = require("mailgun-js");
-const DOMAIN = "sandboxe7a813ef4bbb4a90be756b3dd2e016c6.mailgun.org";
-const mg = mailgun({ apiKey: "ff0847bc92c4ff7f7a57f088f04503f1-a2b91229-939d0b76", domain: DOMAIN });
+//remove special fav from secondlast
+const DOMAIN = "sandboxe7a813ef4bbb4a90be756b3dd2e016c68.mailgun.org";
+const mg = mailgun({ apiKey: "ff0847bc92c4ff7f7a57f088f04503f1-a2b91229-939d0b768", domain: DOMAIN });
 
 
 function getTodos(res) {
@@ -47,7 +48,7 @@ module.exports = function (app) {
       console.log("going to start mail gun");
 
         var data = {
-            from: "Mailgun Sandbox <postmaster@sandboxe7a813ef4bbb4a90be756b3dd2e016c6.mailgun.org>",
+            from: "Mailgun Sandbox <postmaster@sandboxe7a813ef4bbb4a90be756b3dd2e016c68.mailgun.org>",
             to: "neoshub@gmail.com",
             subject: "query",
             text: req.body.text
