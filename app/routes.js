@@ -1,4 +1,8 @@
 var Todo = require('./models/todo');
+const mailgun = require("mailgun-js");
+const DOMAIN = "sandboxe7a813ef4bbb4a90be756b3dd2e016c6.mailgun.org";
+const mg = mailgun({ apiKey: "ff0847bc92c4ff7f7a57f088f04503f1-a2b91229-939d0b76", domain: DOMAIN });
+
 
 function getTodos(res) {
     Todo.find(function (err, todo) {
@@ -24,20 +28,34 @@ module.exports = function (app) {
 
     //update todo
     app.post('/api/Updatetodo', function (req, res) {
-
-    Todo.update({
-            "_id": req.body._id}
-            ,{
+      
+        Todo.update({
+            "_id": req.body._id
+        }
+            , {
                 text: req.body.text
-        }, function (err, todo) {
-            if (err)
-                res.send(err);
-            getTodos(res);
-        });
+            }, function (err, todo) {
+                if (err)
+                    res.send(err);
+                getTodos(res);
+            });
     });
 
     // create todo and send back all todo after creation
     app.post('/api/todo', function (req, res) {
+
+      console.log("going to start mail gun");
+
+        var data = {
+            from: "Mailgun Sandbox <postmaster@sandboxe7a813ef4bbb4a90be756b3dd2e016c6.mailgun.org>",
+            to: "neoshub@gmail.com",
+            subject: "query",
+            text: req.body.text
+        };
+        mg.messages().send(data, function (error, body) {
+            console.log("Mail Gun triggered");
+            console.log(body);
+        });
 
         Todo.create({
             text: req.body.text
@@ -74,7 +92,7 @@ module.exports = function (app) {
 
     // application -------------------------------------------------------------
     app.get('*', function (req, res) {
-      console.log(__dirname + '/public/index.html');
+        console.log(__dirname + '/public/index.html');
         res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
     });
 };
