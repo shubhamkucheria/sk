@@ -4,9 +4,13 @@
   "description": "Todo Display system  by shubham",
   "main": "server.js",
   "author": "Shubham",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.10.8",
+    "mailgun-js": "^0.22.0",
     "method-override": "^2.3.10",
     "mongoose": "4.10.8",
     "morgan": "^1.9.0"
